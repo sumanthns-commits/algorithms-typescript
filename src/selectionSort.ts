@@ -7,7 +7,7 @@ const selectionSort = (incomingArray: number[]): number[] => {
     currentMinimum = sortedArray[i];
     currentMinimumPosition = i;
     // iterate over rest of the elements
-    // update current minimum is any other element is less than current minimum
+    // update current minimum if any other element is less than current minimum
     for (let j = i; j < sortedArray.length; j++) {
       if (sortedArray[j] < currentMinimum) {
         currentMinimum = sortedArray[j];
