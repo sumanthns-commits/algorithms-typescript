@@ -1,6 +1,6 @@
-import selectionSort from "../selectionSort";
+import insertionSort from "../insertionSort";
 
-describe("selectionSort", () => {
+describe("insertionSort", () => {
   [
     [[], []],
     [[3], [3]],
@@ -27,7 +27,7 @@ describe("selectionSort", () => {
   ].forEach((testCase) => {
     const [unsortedArray, expectedSortedArray] = testCase;
     it(`should return [${expectedSortedArray}] for [${unsortedArray}]`, () => {
-      expect(selectionSort(unsortedArray)).toEqual(expectedSortedArray);
+      expect(insertionSort(unsortedArray)).toEqual(expectedSortedArray);
     });
   });
 });
