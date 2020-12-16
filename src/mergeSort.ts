@@ -15,11 +15,11 @@ const mergeSort = (incomingArray: number[]): number[] => {
   const sortedRightArray = mergeSort(rightArray);
 
   // merge left and right array
-  var mergedArray = [];
+  const mergedArray = [];
   let leftArrayPointer = 0;
   let rightArrayPointer = 0;
 
-  for (var k = 0; k < arrLength; k++) {
+  for (let k = 0; k < arrLength; k++) {
     if (typeof sortedLeftArray[leftArrayPointer] === "undefined") {
       mergedArray[k] = sortedRightArray[rightArrayPointer];
       rightArrayPointer++;
