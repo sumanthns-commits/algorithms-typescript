@@ -1,8 +1,10 @@
-const mergeSort = (incomingArray: number[]): number[] => {
+const sortAndCountInversions = (
+  incomingArray: number[]
+): [number[], number] => {
   const arrLength = incomingArray.length;
   // base condition for recursion
   if (arrLength <= 1) {
-    return incomingArray;
+    return [incomingArray, 0];
   }
 
   // divide incoming array into left and right on midpoint
@@ -11,13 +13,16 @@ const mergeSort = (incomingArray: number[]): number[] => {
   const rightArray = incomingArray.slice(midLength, arrLength);
 
   // sort left and right array
-  const sortedLeftArray = mergeSort(leftArray);
-  const sortedRightArray = mergeSort(rightArray);
+  const [sortedLeftArray, leftInversions] = sortAndCountInversions(leftArray);
+  const [sortedRightArray, rightInversions] = sortAndCountInversions(
+    rightArray
+  );
 
   // merge left and right array
   const mergedArray = [];
   let leftArrayPointer = 0;
   let rightArrayPointer = 0;
+  let splitInversions = 0;
 
   for (let k = 0; k < arrLength; k++) {
     if (typeof sortedLeftArray[leftArrayPointer] === "undefined") {
@@ -34,9 +39,12 @@ const mergeSort = (incomingArray: number[]): number[] => {
     } else {
       mergedArray[k] = sortedRightArray[rightArrayPointer];
       rightArrayPointer++;
+      // If the element in right array is less than element in left array,
+      // every remaining element in left array has inversion to this element.
+      splitInversions += sortedLeftArray.length - leftArrayPointer;
     }
   }
-  return mergedArray;
+  return [mergedArray, leftInversions + rightInversions + splitInversions];
 };
 
-export default mergeSort;
+export default sortAndCountInversions;
