@@ -15,7 +15,7 @@ const testCases: Case[] = [
     39,
   ],
 ];
-describe("bubbleSort", () => {
+describe("sortAndCountInversions", () => {
   testCases.forEach((testCase: [number[], number[], number]) => {
     const [
       unsortedArray,
