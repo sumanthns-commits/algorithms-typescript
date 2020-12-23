@@ -1,4 +1,10 @@
-const mergeSort = (incomingArray: number[]): number[] => {
+const defaultComparator = (a: number, b: number) =>
+  a < b ? -1 : a > b ? 1 : 0;
+
+const mergeSort = (
+  incomingArray: any[],
+  comparator: (a: any, b: any) => number = defaultComparator
+): number[] => {
   const arrLength = incomingArray.length;
   // base condition for recursion
   if (arrLength <= 1) {
@@ -11,8 +17,8 @@ const mergeSort = (incomingArray: number[]): number[] => {
   const rightArray = incomingArray.slice(midLength, arrLength);
 
   // sort left and right array
-  const sortedLeftArray = mergeSort(leftArray);
-  const sortedRightArray = mergeSort(rightArray);
+  const sortedLeftArray = mergeSort(leftArray, comparator);
+  const sortedRightArray = mergeSort(rightArray, comparator);
 
   // merge left and right array
   const mergedArray = [];
@@ -27,7 +33,10 @@ const mergeSort = (incomingArray: number[]): number[] => {
       mergedArray[k] = sortedLeftArray[leftArrayPointer];
       leftArrayPointer++;
     } else if (
-      sortedLeftArray[leftArrayPointer] <= sortedRightArray[rightArrayPointer]
+      comparator(
+        sortedLeftArray[leftArrayPointer],
+        sortedRightArray[rightArrayPointer]
+      ) <= 0
     ) {
       mergedArray[k] = sortedLeftArray[leftArrayPointer];
       leftArrayPointer++;
